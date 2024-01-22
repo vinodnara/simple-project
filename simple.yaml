@@ -6,5 +6,6 @@ metadata:
     name: xerter
 
 # run below command manually 
+#oc project xerter
 #oc new-app --name=repure --docker-image="docker.io/openshift/hello-openshift"
 
