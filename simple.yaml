@@ -6,3 +6,23 @@ metadata:
     name: xerter
 
     
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: repure
+spec:
+  replicas: 1
+  selector:
+    app: repure
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: repure
+    spec:
+      containers:
+      - name: repure
+        image: docker.io/library/nginx:latest
+        ports:
+        - containerPort: 80
