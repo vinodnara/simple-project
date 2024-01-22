@@ -5,3 +5,5 @@ kind: ProjectRequest
 metadata:
     name: xerter
 
+#oc new-app --name=repure --docker-image="docker.io/openshift/hello-openshift"
+
