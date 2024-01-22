@@ -1,2 +1,6 @@
-oc new-project xerter
-oc new-app --name=repure --docker-image="docker.io/openshift/hello-openshift"
+apiVersion: project.openshift.io/v1
+description: "xerter"
+displayName: xerter
+kind: ProjectRequest
+metadata:
+    name: xerter
