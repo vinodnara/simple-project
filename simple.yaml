@@ -1,45 +1,8 @@
-# File: openshift-project.yaml
-apiVersion: v1
-kind: Project
+apiVersion: project.openshift.io/v1
+description: "xerter"
+displayName: xerter
+kind: ProjectRequest
 metadata:
-  name: xerter
-  annotations:
-    openshift.io/display-name: "Xerter Project"
+    name: xerter
 
----
-
-# File: openshift-app.yaml
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
-metadata:
-  name: repure
-spec:
-  replicas: 1
-  selector:
-    app: repure
-  strategy:
-    type: Rolling
-  template:
-    metadata:
-      labels:
-        app: repure
-    spec:
-      containers:
-      - name: repure
-        image: docker.io/library/nginx:latest
-        ports:
-        - containerPort: 80
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: repure
-spec:
-  selector:
-    app: repure
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    
