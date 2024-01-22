@@ -1,6 +1,45 @@
-apiVersion: project.openshift.io/v1
-description: "xerter"
-displayName: xerter
-kind: ProjectRequest
+# File: openshift-project.yaml
+apiVersion: v1
+kind: Project
 metadata:
-    name: xerter
+  name: myproject
+  annotations:
+    openshift.io/display-name: "My Project"
+
+---
+
+# File: openshift-app.yaml
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: hello-app
+spec:
+  replicas: 1
+  selector:
+    app: hello-app
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - name: hello-app
+        image: docker.io/library/nginx:latest
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-app
+spec:
+  selector:
+    app: hello-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
