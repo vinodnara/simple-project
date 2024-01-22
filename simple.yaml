@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Project
 metadata:
-  name: myproject
+  name: xerter
   annotations:
-    openshift.io/display-name: "My Project"
+    openshift.io/display-name: "Xerter Project"
 
 ---
 
@@ -12,20 +12,20 @@ metadata:
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: hello-app
+  name: repure
 spec:
   replicas: 1
   selector:
-    app: hello-app
+    app: repure
   strategy:
     type: Rolling
   template:
     metadata:
       labels:
-        app: hello-app
+        app: repure
     spec:
       containers:
-      - name: hello-app
+      - name: repure
         image: docker.io/library/nginx:latest
         ports:
         - containerPort: 80
@@ -35,10 +35,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-app
+  name: repure
 spec:
   selector:
-    app: hello-app
+    app: repure
   ports:
   - protocol: TCP
     port: 80
