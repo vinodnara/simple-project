@@ -5,16 +5,17 @@ kind: ProjectRequest
 metadata:
     name: xerter
 
-# File: repure.yaml
-apiVersion: apps/v1
-kind: Deployment
+
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
 metadata:
   name: repure
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: repure
+    app: repure
+  strategy:
+    resources: {}
   template:
     metadata:
       labels:
@@ -22,21 +23,8 @@ spec:
     spec:
       containers:
       - name: repure
-        image: docker.io/library/nginx:latest
+        image: docker.io/openshift/hello-openshift
         ports:
-        - containerPort: 80
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: repure
-spec:
-  selector:
-    app: repure
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+        - containerPort: 8080
+          protocol: TCP
 
